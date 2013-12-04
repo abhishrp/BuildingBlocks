@@ -1,0 +1,30 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    -->
+    <!-- view sizes approx 3/4 that of the large values-->
+    <dimen name="app_icon">20dp</dimen>
+    <dimen name="search_bar_height">40dp</dimen>
+    <dimen name="padding_small">3dp</dimen>
+    <dimen name="padding_large">8dp</dimen>
+    
+    <dimen name="note_box_height">90dp</dimen>
+    <dimen name="add_note_button_width">96dp</dimen>
+    <dimen name="add_note_button_height">33dp</dimen>
+    
+    
+    <!-- Text sizes approx 1/2 that of the large values-->
+    <!-- contacts -->
+	<dimen name="tab_name_text_size">24sp</dimen>
+	
+	<!-- contact details page -->
+    <dimen name="large_text_size">20sp</dimen>
+    <dimen name="medium_text_size">12sp</dimen>
+    
+    <!-- image size -->
+    <dimen name="image_width">150dp</dimen>
+    <dimen name="image_height">100dp</dimen>
+
+</resources>

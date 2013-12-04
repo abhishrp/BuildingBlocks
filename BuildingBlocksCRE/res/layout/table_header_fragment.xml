@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table_header_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:background="@color/header_footer_bg"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/padding_small"
+    android:paddingLeft="@dimen/padding_large"
+    android:paddingRight="@dimen/padding_large"
+    android:paddingTop="@dimen/padding_small" >
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/table_col1"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/dummy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text_size" />
+
+        <TextView
+            android:id="@+id/table_col2"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/dummy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text_size" />
+
+        <TextView
+            android:id="@+id/table_col3"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/dummy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text_size" />
+
+        <TextView
+            android:id="@+id/table_col4"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/dummy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text_size" />
+
+        <TextView
+            android:id="@+id/table_col5"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/dummy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text_size" />
+    </TableRow>
+
+</TableLayout>

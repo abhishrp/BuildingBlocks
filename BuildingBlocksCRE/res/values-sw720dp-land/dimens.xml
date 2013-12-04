@@ -1,0 +1,25 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    -->
+    <!-- view sizes -->
+    <dimen name="app_icon">30dp</dimen>
+    <dimen name="search_bar_height">50dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_large">12dp</dimen>
+    
+    <dimen name="note_box_height">120dp</dimen>
+    <dimen name="add_note_button_width">127dp</dimen>
+    <dimen name="add_note_button_height">42dp</dimen>
+    
+    <!-- Text sizes -->
+    <!-- contacts -->
+    <dimen name="tab_name_text_size">32sp</dimen>
+	
+	<!-- contact details page -->
+    <dimen name="large_text_size">25sp</dimen>
+    <dimen name="small_text_size">20sp</dimen>
+
+</resources>

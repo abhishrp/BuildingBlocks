@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_tab_fragment"
+        android:layout_alignParentLeft="true"
+        android:background="@color/note_bar_bg"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large" >
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="70dp"
+            android:text="@string/note"
+            android:textSize="@dimen/medium_text_size" />
+
+        <EditText
+            android:id="@+id/note_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/note_box_height"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_toLeftOf="@+id/add_note_button"
+            android:layout_toRightOf="@+id/note"
+            android:background="@android:color/white"
+            android:gravity="top|left"
+            android:ems="10"
+            android:inputType="textMultiLine" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/add_note_button"
+            android:layout_width="@dimen/add_note_button_width"
+            android:layout_height="@dimen/add_note_button_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/add_note" />
+    </RelativeLayout>

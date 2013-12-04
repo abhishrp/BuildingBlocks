@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/main_bg" >
+
+        <ImageView
+            android:id="@+id/app_icon"
+            android:layout_width="@dimen/app_icon"
+            android:layout_height="@dimen/app_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="@string/desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/incoming_calls"
+            android:textColor="@color/header_footer_bg"
+            android:textSize="@dimen/tab_name_text_size" />
+
+        <!--
+                 <ImageButton
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/app_icon"
+            android:layout_toLeftOf="@+id/app_icon"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/desc"
+            android:src="@drawable/logout" />        -->
+    </RelativeLayout>
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:layout_above="@id/tab_layout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/header_footer_bg"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_large" >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" >
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+   
+
+    <RelativeLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/header_footer_bg" >
+
+        <Button
+            android:id="@+id/contacts_tab"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="70dp"
+            android:background="@null"
+            android:drawableTop="@drawable/contact"
+            android:paddingBottom="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:text="@string/tab1" />
+
+        <Button
+            android:id="@+id/properties_tab"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_toRightOf="@id/contacts_tab"
+            android:background="@null"
+            android:drawableTop="@drawable/properties"
+            android:paddingBottom="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:text="@string/tab2" />
+
+        <Button
+            android:id="@+id/listing_tab"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_toRightOf="@id/properties_tab"
+            android:background="@null"
+            android:drawableTop="@drawable/listings"
+            android:paddingBottom="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:text="@string/tab3" />
+
+        <Button
+            android:id="@+id/incoming_call_tab"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:layout_toRightOf="@id/listing_tab"
+            android:background="@null"
+            android:drawableTop="@drawable/call"
+            android:paddingBottom="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:text="@string/tab4" />
+        <!--
+        <Button
+            android:id="@+id/create_note_tab"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft=""@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_large"
+            android:layout_toRightOf="@id/incoming_call_tab"
+            android:drawableTop="@drawable/ic_launcher"
+            android:background="@null"
+            android:text="@string/create_note"/>
+        -->
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#C4D7ED</color>
+    <color name="header_footer_bg">#6189AA</color>
+    <color name="table_alt_row">#F7FAFD</color>
+    <color name="note_bar_bg">#EFEFEF</color>
+</resources>

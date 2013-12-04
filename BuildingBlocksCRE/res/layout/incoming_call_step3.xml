@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/in_call_step3_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"
+        android:text="@string/dummy"
+        android:textSize="@dimen/large_text_size" />
+
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/search_bar_height"
+        android:layout_below="@id/in_call_step3_title"
+        android:background="@android:color/white"
+        android:iconifiedByDefault="false" >
+    </SearchView>
+
+    <TableLayout
+        android:id="@+id/table_header_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:background="@color/header_footer_bg"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingLeft="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_small" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:contentDescription="@string/desc"
+                android:gravity="left|center_vertical"
+                android:src="@drawable/checkmark_active" />
+
+            <TextView
+                android:id="@+id/table_col1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/first_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/large_text_size" />
+
+            <TextView
+                android:id="@+id/table_col2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/last_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/large_text_size" />
+
+            <TextView
+                android:id="@+id/table_col3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/comp_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/large_text_size" />
+
+            <TextView
+                android:id="@+id/table_col4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/category"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/large_text_size" />
+
+            <TextView
+                android:id="@+id/table_col5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/phone_no"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/large_text_size" />
+
+        </TableRow>
+    </TableLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/table_header_layout" >
+
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/note_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/note_bar_bg"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large" >
+
+        <Button
+            android:id="@+id/in_call_step3_finish"
+            android:layout_width="@dimen/add_note_button_width"
+            android:layout_height="@dimen/add_note_button_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/button_finish" />
+    </RelativeLayout>
+
+</RelativeLayout>

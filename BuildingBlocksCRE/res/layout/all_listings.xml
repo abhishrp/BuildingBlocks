@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".AllListingsActivity" >
+    
+    <fragment
+        android:id="@+id/header_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        class="com.nextwaretech.buildingblockscre.HeaderFragment" />
+    <!-- 
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/main_bg" >
+
+        <ImageView
+            android:id="@+id/app_icon"
+            android:layout_width="@dimen/app_icon"
+            android:layout_height="@dimen/app_icon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="@string/desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/properties"
+            android:textColor="@color/header_footer_bg"
+            android:textSize="@dimen/tab_name_text_size" />
+
+    </RelativeLayout>
+ -->
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/search_bar_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/header_fragment"
+        android:background="@android:color/white"
+        android:iconifiedByDefault="false" >
+    </SearchView>
+
+    <fragment
+        android:id="@+id/table_header_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/search_bar"
+        class="com.nextwaretech.buildingblockscre.TableHeaderFragment" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/table_header_fragment" >
+    </ListView>
+
+    <fragment
+        android:id="@+id/main_tab_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        class="com.nextwaretech.buildingblockscre.MainTabFragment" />
+
+    
+    
+</RelativeLayout>
