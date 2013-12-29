@@ -1,72 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllContactsActivity" >
+    android:layerType="software" >
 
-    <RelativeLayout
-        android:id="@+id/header_layout"
+    <fragment
+        android:id="@+id/header_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/main_bg" >
-
-        <ImageView
-            android:id="@+id/app_icon"
-            android:layout_width="@dimen/app_icon"
-            android:layout_height="@dimen/app_icon"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:contentDescription="@string/desc"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:id="@+id/tab_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/contacts"
-            android:textColor="@color/header_footer_bg"
-            android:textSize="@dimen/tab_name_text_size" />
-
-        <!--
-                 <ImageButton
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/app_icon"
-            android:layout_toLeftOf="@+id/app_icon"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:contentDescription="@string/desc"
-            android:src="@drawable/logout" />
-        -->
-    </RelativeLayout>
-
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/search_bar_height"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/header_layout"
-        android:background="@android:color/white"
-        android:iconifiedByDefault="false" >
-    </SearchView>
+        class="com.nextwaretech.buildingblockscre.HeaderFragment" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/header_fragment"
         android:background="@color/header_footer_bg" >
 
         <TextView
@@ -99,9 +51,8 @@
         android:id="@+id/details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/relativeLayout1"
         android:layout_marginTop="@dimen/padding_large"
+        android:layout_below="@id/relativeLayout1"
         android:baselineAligned="false"
         android:orientation="horizontal" >
 
@@ -261,7 +212,7 @@
                     android:textColor="@color/header_footer_bg"
                     android:textSize="@dimen/medium_text_size" />
             </TableRow>
-            
+
             <TableRow
                 android:layout_marginBottom="@dimen/padding_large"
                 android:layout_marginTop="@dimen/padding_large" >
@@ -372,120 +323,19 @@
         </TableLayout>
     </LinearLayout>
 
-    <RelativeLayout
+   
+   
+    <fragment
+        android:id="@+id/add_note_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tab_layout"
-        android:layout_alignParentLeft="true"
-        android:background="@color/note_bar_bg"
-        android:paddingBottom="@dimen/padding_large"
-        android:paddingTop="@dimen/padding_large" >
+        android:layout_above="@id/main_tab_fragment"
+        class="com.nextwaretech.buildingblockscre.AddNoteFragment" />
 
-        <TextView
-            android:id="@+id/note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="70dp"
-            android:text="@string/note"
-            android:textSize="@dimen/medium_text_size" />
-
-        <EditText
-            android:id="@+id/note_text"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/note_box_height"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_toLeftOf="@+id/add_note_button"
-            android:layout_toRightOf="@+id/note"
-            android:background="@android:color/white"
-            android:gravity="top|left"
-            android:ems="10"
-            android:inputType="textMultiLine" >
-
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/add_note_button"
-            android:layout_width="@dimen/add_note_button_width"
-            android:layout_height="@dimen/add_note_button_height"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="70dp"
-            android:background="@drawable/add_note" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/tab_layout"
+    <fragment
+        android:id="@+id/main_tab_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/header_footer_bg" >
-
-        <Button
-            android:id="@+id/contacts_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="70dp"
-            android:background="@null"
-            android:drawableTop="@drawable/contact"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab1" />
-
-        <Button
-            android:id="@+id/properties_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/contacts_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/properties"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab2" />
-
-        <Button
-            android:id="@+id/listing_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/properties_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/listings"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab3" />
-
-        <Button
-            android:id="@+id/incoming_call_tab"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/listing_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/call"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab4" />
-        <!--
-        <Button
-            android:id="@+id/create_note_tab"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft=""@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingBottom="@dimen/padding_large"
-            android:layout_toRightOf="@id/incoming_call_tab"
-            android:drawableTop="@drawable/ic_launcher"
-            android:background="@null"
-            android:text="@string/create_note"/>
-        -->
-    </RelativeLayout>
-
+        class="com.nextwaretech.buildingblockscre.MainTabFragment" />
 </RelativeLayout>

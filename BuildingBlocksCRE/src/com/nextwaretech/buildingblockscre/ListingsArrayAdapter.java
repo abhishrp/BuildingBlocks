@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final int textSizeinDP = 15;
-		int textSize = SizeTransform.dpToPixel(context, textSizeinDP);
+		Resources resource = context.getResources();
+		float textSize = resource.getDimension(R.dimen.large_text_size);
 		
 		LayoutParams params;
 		
@@ -78,6 +79,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 			address.setTextSize(textSize);
 			params = (LayoutParams) address.getLayoutParams();
 			params.width = addressWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			address.setLayoutParams(params);
 			
 			
@@ -93,6 +96,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 			type.setTextSize(textSize);
 			params = (LayoutParams) type.getLayoutParams();
 			params.width = typeWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			type.setLayoutParams(params);
 			
 			if(property!=null){
@@ -108,6 +113,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 			propType.setTextSize(textSize);
 			params = (LayoutParams) propType.getLayoutParams();
 			params.width = propTypeWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			propType.setLayoutParams(params);
 			
 			String tm = listings.get(position).getString("team_name"); 
@@ -118,6 +125,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 			team.setTextSize(textSize);
 			params = (LayoutParams) team.getLayoutParams();
 			params.width = teamWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			team.setLayoutParams(params);
 			
 			JSONObject listingStatus = listings.get(position).getJSONObject("listing_status");
@@ -131,6 +140,8 @@ public class ListingsArrayAdapter extends ArrayAdapter<JSONObject> {
 			status.setTextSize(textSize);
 			params = (LayoutParams) status.getLayoutParams();
 			params.width = statusWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			status.setLayoutParams(params);
 			
 			

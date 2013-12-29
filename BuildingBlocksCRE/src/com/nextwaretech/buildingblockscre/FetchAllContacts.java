@@ -93,6 +93,7 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 				} else {
 					Log.e(AllContactsActivity.class.toString(),
 							"Failed to fetch contacts "+statusCode);
+					return statusCode+"";
 				}
 
 				jsonResponse = new JSONObject(builder.toString());
@@ -135,6 +136,11 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
+		if(Integer.parseInt(result)!=200){
+			footerView.setVisibility(View.GONE);
+			Data.loadingMore = false;
+			return;
+		}
 		Data.loadingMore = true;
 
 		if (allContactsPagination.currentPage <= allContactsPagination.totalPages) {

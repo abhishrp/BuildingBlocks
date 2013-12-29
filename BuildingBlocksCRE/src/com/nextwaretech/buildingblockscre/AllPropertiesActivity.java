@@ -30,27 +30,27 @@ import com.nextwaretech.buildingblockscre.R;
 public class AllPropertiesActivity extends Activity implements
 		OnScrollListener, OnItemClickListener, OnQueryTextListener {
 
-	private static final String URI_NO_AUTH_TOKEN = Data.SERVER_NAME+"properties.json?auth_token=";
+	private static final String URI_NO_AUTH_TOKEN = Data.SERVER_NAME
+			+ "properties.json?auth_token=";
 	private static StringBuilder uriAuthTokenAdded;
 	private String query = "";
 	private static boolean searching;
-	
+
 	private static LinkedList<JSONObject> propertiesList = new LinkedList<JSONObject>();
 	private static LinkedList<JSONObject> searchedPropertiesList = new LinkedList<JSONObject>();
-	
+
 	private static Pagination allPropertiesPagination = new Pagination();
 	private static Pagination searchedPropertiesPagination;
-	
+
 	private PropertiesArrayAdapter allPropertiesAdapter;
 	private PropertiesArrayAdapter searchedPropertiesAdapter;
-	
+
 	private FetchAllProperties fetchProperties;
 	private SearchProperties searchProperty;
 
 	private View footerView;
 	private SearchView search;
 	private static ListView table;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,8 @@ public class AllPropertiesActivity extends Activity implements
 		TextView headerName = (TextView) findViewById(R.id.header_name);
 		headerName.setText("Properties");
 
-		Button contactsTab = (Button) findViewById(R.id.properties_tab);
-		contactsTab.setBackgroundColor(getResources().getColor(R.color.bg));
+		Button propertiesTab = (Button) findViewById(R.id.properties_tab);
+		propertiesTab.setBackgroundColor(getResources().getColor(R.color.bg));
 
 		TextView col1 = (TextView) findViewById(R.id.table_col1);
 		col1.setText(getResources().getString(R.string.address));
@@ -106,8 +106,8 @@ public class AllPropertiesActivity extends Activity implements
 		Data.loadingMore = true;
 		allPropertiesPagination.currentPage++;
 		table.setAdapter(allPropertiesAdapter);
-		fetchProperties = new FetchAllProperties(this,
-				footerView, allPropertiesPagination, allPropertiesAdapter);
+		fetchProperties = new FetchAllProperties(this, footerView,
+				allPropertiesPagination, allPropertiesAdapter);
 		fetchProperties.execute(uriAuthTokenAdded.toString());
 
 		Log.v("damn", fetchProperties.getStatus().toString());
@@ -150,7 +150,7 @@ public class AllPropertiesActivity extends Activity implements
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
-	int visibleItemCount, int totalItemCount) {
+			int visibleItemCount, int totalItemCount) {
 		// what is the bottom item that is visible
 		int lastInScreen = firstVisibleItem + visibleItemCount;
 		// is the bottom item visible & not loading more already ? Load
@@ -162,7 +162,6 @@ public class AllPropertiesActivity extends Activity implements
 				searchedPropertiesPagination.currentPage++;
 				Log.v("propertyresp", "onscroll search page "
 						+ searchedPropertiesPagination.currentPage);
-				// searchContact = new SearchContacts();
 				searchProperty = new SearchProperties(this, footerView,
 						searchedPropertiesPagination, searchedPropertiesAdapter);
 				searchProperty.execute(uriAuthTokenAdded.toString(), query);
@@ -184,7 +183,7 @@ public class AllPropertiesActivity extends Activity implements
 	@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 	}
-	
+
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -197,7 +196,6 @@ public class AllPropertiesActivity extends Activity implements
 		startActivity(intent);
 	}
 
-
 	@Override
 	public boolean onQueryTextChange(String arg0) {
 		return false;
@@ -205,11 +203,11 @@ public class AllPropertiesActivity extends Activity implements
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {
-		if(query.length()==0) {
+		if (query.length() == 0) {
 			table.setAdapter(allPropertiesAdapter);
 			allPropertiesAdapter.notifyDataSetChanged();
 		}
-		if(query.equals(this.query))
+		if (query.equals(this.query))
 			return false;
 		this.query = query;
 		searching = true;
@@ -217,9 +215,10 @@ public class AllPropertiesActivity extends Activity implements
 		searchedPropertiesList.clear();
 		searchedPropertiesPagination.currentPage++;
 		table.setAdapter(searchedPropertiesAdapter);
-		Log.v("propertyresp", "onquerysubmit search page "+ searchedPropertiesPagination.currentPage);
-		//searchContact = new SearchContacts();
-		searchProperty = new SearchProperties(this, footerView, searchedPropertiesPagination, searchedPropertiesAdapter);
+		Log.v("propertyresp", "onquerysubmit search page "
+				+ searchedPropertiesPagination.currentPage);
+		searchProperty = new SearchProperties(this, footerView,
+				searchedPropertiesPagination, searchedPropertiesAdapter);
 		searchProperty.execute(uriAuthTokenAdded.toString(), query);
 		return true;
 	}

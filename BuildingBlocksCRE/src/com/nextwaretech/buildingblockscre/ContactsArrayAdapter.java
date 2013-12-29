@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,8 @@ public class ContactsArrayAdapter extends ArrayAdapter<JSONObject> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final int textSizeinDP = 15;
-		int textSize = SizeTransform.dpToPixel(context, textSizeinDP);
+		Resources resource = context.getResources();
+		float textSize = resource.getDimension(R.dimen.large_text_size);
 		
 		LayoutParams params;
 		
@@ -66,49 +67,74 @@ public class ContactsArrayAdapter extends ArrayAdapter<JSONObject> {
 		TextView phone = (TextView) rowView.findViewById(R.id.col5);
 
 		try {
-			if(contacts.get(position).getString("first_name")!=null)
-				firstName.setText(contacts.get(position).getString("first_name"));
-			else
+			String firstStr = contacts.get(position).getString("first_name").trim();
+			if(firstStr!=null){
+					firstName.setText(firstStr);
+			}
+			else{
 				firstName.setText("-");
+			}
 			firstName.setTextSize(textSize);
 			params = (LayoutParams) firstName.getLayoutParams();
 			params.width = firstNameWidth;
+			params.bottomMargin = (int)context.getResources().getDimension(R.dimen.padding_small);
+			params.topMargin = (int)context.getResources().getDimension(R.dimen.padding_small);
 			firstName.setLayoutParams(params);
 			
-			if(contacts.get(position).getString("last_name")!=null)
-				lastName.setText(contacts.get(position).getString("last_name"));
-			else
+			String lastStr = contacts.get(position).getString("last_name").trim();
+			if(lastStr!=null){
+					lastName.setText(lastStr);
+			}
+			else{
 				lastName.setText("-");
+			}
 			lastName.setTextSize(textSize);
 			params = (LayoutParams) lastName.getLayoutParams();
 			params.width = lastNameWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			lastName.setLayoutParams(params);
 			
-			if(contacts.get(position).getString("company_name")!=null)
-				compName.setText(contacts.get(position).getString("company_name"));
-			else
+			String compStr = contacts.get(position).getString("company_name").trim();
+			if(compStr!=null){
+					compName.setText(compStr);
+			}
+			else{
 				compName.setText("-");
+			}
 			compName.setTextSize(textSize);
 			params = (LayoutParams) compName.getLayoutParams();
 			params.width = companyNameWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			compName.setLayoutParams(params);
 			
-			if(contacts.get(position).getString("category")!=null)
-				category.setText(contacts.get(position).getString("category"));
-			else
+			String catStr = contacts.get(position).getString("category").trim();
+			if(catStr!=null){
+					category.setText(catStr);
+			}
+			else{
 				category.setText("-");
+			}
 			category.setTextSize(textSize);
 			params = (LayoutParams) category.getLayoutParams();
 			params.width = categoryWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			category.setLayoutParams(params);
 			
-			if(contacts.get(position).getString("phone_no")!=null)
-				phone.setText(contacts.get(position).getString("phone_no"));
-			else
+			String phoneStr = contacts.get(position).getString("phone_no").trim();
+			if(phoneStr!=null){
+					phone.setText(phoneStr);
+			}
+			else{
 				phone.setText("-");
+			}
 			phone.setTextSize(textSize);
 			params = (LayoutParams) phone.getLayoutParams();
 			params.width = phoneNoWidth;
+			params.bottomMargin = (int)resource.getDimension(R.dimen.padding_small);
+			params.topMargin = (int)resource.getDimension(R.dimen.padding_small);
 			phone.setLayoutParams(params);
 		} catch (JSONException e) {
 			e.printStackTrace();

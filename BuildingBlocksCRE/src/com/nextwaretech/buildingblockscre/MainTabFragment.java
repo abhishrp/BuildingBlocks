@@ -25,14 +25,16 @@ public class MainTabFragment extends Fragment {
 		CONTACTS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(
-						"com.nextwaretech.buildingblockscre.AllContactsActivity");
-				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				startActivity(intent);
 				CONTACTS.setClickable(false);
 				PROPERTIES.setClickable(true);
 				LISTINGS.setClickable(true);
 				INCOMING_CALLS.setClickable(true);
+				
+				Intent intent = new Intent(
+						"com.nextwaretech.buildingblockscre.AllContactsActivity");
+				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				startActivity(intent);
+				
 			}
 		});
 
@@ -40,14 +42,14 @@ public class MainTabFragment extends Fragment {
 		PROPERTIES.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(
-						"com.nextwaretech.buildingblockscre.AllPropertiesActivity");
-				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				startActivity(intent);
 				CONTACTS.setClickable(true);
 				PROPERTIES.setClickable(false);
 				LISTINGS.setClickable(true);
 				INCOMING_CALLS.setClickable(true);
+				Intent intent = new Intent(
+						"com.nextwaretech.buildingblockscre.AllPropertiesActivity");
+				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				startActivity(intent);
 			}
 		});
 
@@ -55,14 +57,14 @@ public class MainTabFragment extends Fragment {
 		LISTINGS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(
-						"com.nextwaretech.buildingblockscre.AllListingsActivity");
-				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				startActivity(intent);
 				CONTACTS.setClickable(true);
 				PROPERTIES.setClickable(true);
 				LISTINGS.setClickable(false);
 				INCOMING_CALLS.setClickable(true);
+				Intent intent = new Intent(
+						"com.nextwaretech.buildingblockscre.AllListingsActivity");
+				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				startActivity(intent);
 			}
 		});
 
@@ -70,14 +72,14 @@ public class MainTabFragment extends Fragment {
 		INCOMING_CALLS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(
-						"com.nextwaretech.buildingblockscre.IncomingCallActivity");
-				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				startActivity(intent);
 				CONTACTS.setClickable(true);
 				PROPERTIES.setClickable(true);
 				LISTINGS.setClickable(true);
 				INCOMING_CALLS.setClickable(false);
+				Intent intent = new Intent(
+						"com.nextwaretech.buildingblockscre.IncomingCallActivity");
+				intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				startActivity(intent);
 			}
 		});
 

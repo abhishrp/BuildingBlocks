@@ -160,7 +160,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 				searchedListingsPagination.currentPage++;
 				Log.v("listingresp", "onscroll search page "
 						+ searchedListingsPagination.currentPage);
-				// searchContact = new SearchContacts();
 				searchListing = new SearchListings(this, footerView,
 						searchedListingsPagination, searchedListingsAdapter);
 				searchListing.execute(uriAuthTokenAdded.toString(), query);
@@ -215,7 +214,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 		searchedListingsPagination.currentPage++;
 		table.setAdapter(searchedListingsAdapter);
 		Log.v("listingresp", "onquerysubmit search page "+ searchedListingsPagination.currentPage);
-		//searchContact = new SearchContacts();
 		searchListing = new SearchListings(this, footerView, searchedListingsPagination, searchedListingsAdapter);
 		searchListing.execute(uriAuthTokenAdded.toString(), query);
 		return true;

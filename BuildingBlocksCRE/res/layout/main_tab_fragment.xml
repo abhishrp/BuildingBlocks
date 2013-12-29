@@ -1,67 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".AllContactsActivity" >
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:background="@color/header_footer_bg" >
 
-    <RelativeLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/contacts_tab"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="@color/header_footer_bg" >
+        android:layout_marginLeft="70dp"
+        android:background="@null"
+        android:drawableTop="@drawable/contact"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:text="@string/tab1" />
 
-        <Button
-            android:id="@+id/contacts_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="70dp"
-            android:background="@null"
-            android:drawableTop="@drawable/contact"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab1" />
+    <Button
+        android:id="@+id/properties_tab"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_toRightOf="@id/contacts_tab"
+        android:background="@null"
+        android:drawableTop="@drawable/properties"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:text="@string/tab2" />
 
-        <Button
-            android:id="@+id/properties_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/contacts_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/properties"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab2" />
+    <Button
+        android:id="@+id/listing_tab"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_toRightOf="@id/properties_tab"
+        android:background="@null"
+        android:drawableTop="@drawable/listings"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:text="@string/tab3" />
 
-        <Button
-            android:id="@+id/listing_tab"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/properties_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/listings"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab3" />
-
-        <Button
-            android:id="@+id/incoming_call_tab"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_large"
-            android:layout_toRightOf="@id/listing_tab"
-            android:background="@null"
-            android:drawableTop="@drawable/call"
-            android:paddingBottom="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:text="@string/tab4" />
-        <!--
+    <Button
+        android:id="@+id/incoming_call_tab"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_toRightOf="@id/listing_tab"
+        android:background="@null"
+        android:drawableTop="@drawable/call"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:text="@string/tab4" />
+    <!--
         <Button
             android:id="@+id/create_note_tab"
             android:layout_width="170dp"
@@ -72,8 +65,7 @@
             android:layout_toRightOf="@id/incoming_call_tab"
             android:drawableTop="@drawable/ic_launcher"
             android:background="@null"
-            android:text="@string/create_note"/>
-        -->
-    </RelativeLayout>
+            android:text="@string/create_note"/>
+    -->
 
 </RelativeLayout>

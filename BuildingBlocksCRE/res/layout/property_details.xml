@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AllPropertiesActivity" >
+    android:layout_height="match_parent" >
 
     <fragment
         android:id="@+id/header_fragment"
@@ -13,22 +12,13 @@
         android:layout_alignParentTop="true"
         class="com.nextwaretech.buildingblockscre.HeaderFragment" />
 
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/search_bar_height"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/header_fragment"
-        android:background="@android:color/white"
-        android:iconifiedByDefault="false" >
-    </SearchView>
 
     <RelativeLayout
         android:id="@+id/property_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/header_fragment"
         android:background="@color/header_footer_bg" >
 
         <TextView
@@ -61,8 +51,8 @@
         android:id="@+id/image_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/property_title"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/property_title"
         android:orientation="horizontal" >
 
         <ImageView
@@ -71,14 +61,14 @@
             android:layout_height="@dimen/image_height"
             android:layout_marginLeft="10dp"
             android:contentDescription="@string/desc" />
-        
+
         <TableLayout
             android:id="@+id/details_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@id/property_image"
-            android:layout_marginLeft="100dp"
             android:orientation="vertical" >
 
             <TableRow
@@ -137,306 +127,314 @@
         </TableLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/details"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/image_type"
-        android:layout_marginTop="@dimen/padding_large"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:layout_below="@id/image_type"
+        android:layout_above="@id/add_note_fragment" >
 
-        <TableLayout
-            android:id="@+id/details_col1"
+        <LinearLayout
+            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="3"
-            android:orientation="vertical" >
+            android:layout_marginTop="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_large"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+            <TableLayout
+                android:id="@+id/details_col1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="3"
+                android:orientation="vertical" >
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/property_size"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_size"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:id="@+id/property_size_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
-            
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/building_class"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/property_size_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:id="@+id/building_class_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/building_class"
+                        android:textSize="@dimen/medium_text_size" />
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no_of_units"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/building_class_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:id="@+id/no_of_units_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_of_units"
+                        android:textSize="@dimen/medium_text_size" />
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zoning"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/no_of_units_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:id="@+id/zoning_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zoning"
+                        android:textSize="@dimen/medium_text_size" />
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/parking"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/zoning_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:id="@+id/parking_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
-        </TableLayout>
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/parking"
+                        android:textSize="@dimen/medium_text_size" />
 
-        <TableLayout
-            android:id="@+id/details_col2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_weight="2"
-            android:orientation="vertical" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:id="@+id/parking_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
+            </TableLayout>
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lot_size"
-                    android:textSize="@dimen/medium_text_size" />
+            <TableLayout
+                android:id="@+id/details_col2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_weight="2"
+                android:orientation="vertical" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-                <TextView
-                    android:id="@+id/lot_size_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
-            
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lot_size"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/building_use"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/lot_size_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/building_use_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/building_use"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/construction"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/building_use_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/construction_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/construction"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/parcel_no"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/construction_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/parcel_no_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
 
-            <TableRow
-                android:layout_marginBottom="@dimen/padding_large"
-                android:layout_marginTop="@dimen/padding_large" >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/parcel_no"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/parking_1000"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colon"
-                    android:textSize="@dimen/medium_text_size" />
+                    <TextView
+                        android:id="@+id/parcel_no_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
 
-                <TextView
-                    android:id="@+id/parking_1000_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text="@string/dummy"
-                    android:textColor="@color/header_footer_bg"
-                    android:textSize="@dimen/medium_text_size" />
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
+                <TableRow
+                    android:layout_marginBottom="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_large" >
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/parking_1000"
+                        android:textSize="@dimen/medium_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colon"
+                        android:textSize="@dimen/medium_text_size" />
+
+                    <TextView
+                        android:id="@+id/parking_1000_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/dummy"
+                        android:textColor="@color/header_footer_bg"
+                        android:textSize="@dimen/medium_text_size" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <fragment
         android:id="@+id/add_note_fragment"
@@ -450,7 +448,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         class="com.nextwaretech.buildingblockscre.MainTabFragment" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
     <dimen name="padding_small">3dp</dimen>
     <dimen name="padding_large">8dp</dimen>
     
-    <dimen name="note_box_height">90dp</dimen>
+    <dimen name="note_box_height">30dp</dimen>
     <dimen name="add_note_button_width">96dp</dimen>
     <dimen name="add_note_button_height">33dp</dimen>
     
@@ -21,7 +21,7 @@
 	
 	<!-- contact details page -->
     <dimen name="large_text_size">20sp</dimen>
-    <dimen name="medium_text_size">12sp</dimen>
+    <dimen name="medium_text_size">16sp</dimen>
     
     <!-- image size -->
     <dimen name="image_width">150dp</dimen>

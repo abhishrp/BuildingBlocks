@@ -13,22 +13,13 @@
         android:layout_alignParentTop="true"
         class="com.nextwaretech.buildingblockscre.HeaderFragment" />
 
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/search_bar_height"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/header_fragment"
-        android:background="@android:color/white"
-        android:iconifiedByDefault="false" >
-    </SearchView>
 
     <RelativeLayout
         android:id="@+id/property_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/padding_large"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/header_fragment"
         android:background="@color/header_footer_bg" >
 
         

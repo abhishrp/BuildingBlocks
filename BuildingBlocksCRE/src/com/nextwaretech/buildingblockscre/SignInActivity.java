@@ -201,8 +201,9 @@ public class SignInActivity extends Activity implements OnClickListener {
 
 				if (session.getString("error").equals("Success")) {
 					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllContactsActivity");
+					Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllListingsActivity");
 					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.IncomingCallActivity");
-					Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllPropertiesActivity");
+					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllPropertiesActivity");
 					// intent.putExtra("auth_token",
 					// session.getString("auth_token"));
 					Data.authToken = session.getString("auth_token");

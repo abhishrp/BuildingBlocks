@@ -21,6 +21,7 @@ public class StartUpActivity extends Activity {
 					e.printStackTrace();
 				} finally {
 					Intent intent = new Intent("com.nextwaretech.buildingblockscre.SignInActivity");
+					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.PropertyDetailsActivity");
 					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.IncomingCallActivity");
 					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllPropertiesActivity");
 					startActivity(intent);

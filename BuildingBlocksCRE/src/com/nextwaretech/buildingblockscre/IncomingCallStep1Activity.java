@@ -102,7 +102,8 @@ public class IncomingCallStep1Activity extends Activity {
 		//JSONObject request = new JSONObject();
 		//final JSONObject incoming_call = new JSONObject();
 		
-		Button step1ContinueButton = (Button) findViewById(R.id.in_call_step1_continue);
+		Button step1ContinueButton = (Button) findViewById(R.id.add_note_button);
+		step1ContinueButton.setBackground(getResources().getDrawable(R.drawable.button_continue));
 		step1ContinueButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -451,6 +452,7 @@ public class IncomingCallStep1Activity extends Activity {
 
 				jsonResponse = new JSONObject(builder.toString());
 				incomingCall = jsonResponse.getJSONObject("incoming_call");
+				Log.v("in call1", incomingCall.toString());
 				if(incomingCall.has("id"))
 					Log.v("in call", "id "+incomingCall.getString("id"));
 				

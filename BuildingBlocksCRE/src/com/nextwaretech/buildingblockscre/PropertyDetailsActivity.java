@@ -34,24 +34,25 @@ import com.nextwaretech.buildingblockscre.R;
 public class PropertyDetailsActivity extends Activity {
 
 	private static StringBuilder uriAuthTokenAdded;
-	private static final String URI_INCOMPLETE = Data.SERVER_NAME;
+	private static final String URI_INCOMPLETE = Data.SERVER_NAME+"properties/";
 	private static int propertyId;
-	private static String username;
 	private ImageView propertyImage;
 	private TextView address1, address2, propertyType, subType, propertySize,
-			buildingClass, noOfUnits, zoning, parking, lotSize,
-			buildingUse, construction, parcelNo, parking1000;
+			buildingClass, noOfUnits, zoning, parking, lotSize, buildingUse,
+			construction, parcelNo, parking1000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.property_details);
 
+		TextView headerName = (TextView) findViewById(R.id.header_name);
+		headerName.setText("Properties");
+		
 		Button properties_tab = (Button) findViewById(R.id.properties_tab);
 		properties_tab.setBackgroundColor(getResources().getColor(R.color.bg));
 
 		uriAuthTokenAdded = new StringBuilder(URI_INCOMPLETE);
-		uriAuthTokenAdded.append("/properties");
 
 		propertyImage = (ImageView) findViewById(R.id.property_image);
 		address1 = (TextView) findViewById(R.id.address1);
@@ -68,15 +69,13 @@ public class PropertyDetailsActivity extends Activity {
 		construction = (TextView) findViewById(R.id.construction_value);
 		parcelNo = (TextView) findViewById(R.id.parcel_no_value);
 		parking1000 = (TextView) findViewById(R.id.parking_1000_value);
-		
 
 		Bundle extras = getIntent().getExtras();
 		String str = "";
 		if (extras != null) {
 			str = extras.getString("propertyJSONString");
 		}
-		StringBuilder addr = new StringBuilder();
-		JSONObject propertyInfo;
+		
 		try {
 			JSONObject property = new JSONObject(str);
 			Log.v("propertyDetails", property.getString("site_address"));
@@ -85,124 +84,142 @@ public class PropertyDetailsActivity extends Activity {
 			uriAuthTokenAdded.append(propertyId);
 			uriAuthTokenAdded.append("/new_note.json?auth_token=");
 			uriAuthTokenAdded.append(Data.authToken);
-			
-			
+
 			address1.setText(property.getString("site_address"));
-			
+
 			StringBuilder cityState = new StringBuilder();
-			if (!property.isNull("site_city")){
+			if (!property.isNull("site_city")) {
 				cityState.append(property.getString("site_city"));
 			}
-			if (!property.isNull("site_state")){
-				if(cityState.length()!=0)
+			if (!property.isNull("site_state")) {
+				if (cityState.length() != 0)
 					cityState.append(", ");
 				cityState.append(property.getString("site_state"));
 			}
-			if (!property.isNull("site_zip")){
-				if(cityState.length()!=0)
+			if (!property.isNull("site_zip")) {
+				if (cityState.length() != 0)
 					cityState.append(", ");
 				cityState.append(property.getString("site_zip"));
 			}
-			
+
 			address2.setText(cityState);
-			
-			if(!property.isNull("default_picture") && property.getString("default_picture").length()!=0){
+
+			if (!property.isNull("default_picture")
+					&& property.getString("default_picture").length() != 0) {
 				Log.v("property_image", "fetching");
 				FetchPicture fpic = new FetchPicture();
 				fpic.execute(property.getString("default_picture"));
+			} else {
+				propertyImage.setBackground(getResources().getDrawable(
+						R.drawable.default_image));
+			}
+
+			String type = null;
+			if (!property.isNull("property_type")) {
+				if (!property.getJSONObject("property_type").isNull(
+						"virtual_property_type")) {
+					type = property.getJSONObject("property_type").getString(
+							"virtual_property_type");
+					propertyType.setText(type);
+				} else
+					propertyType.setText("");
 			}
 			else{
-				propertyImage.setBackground(getResources().getDrawable(R.drawable.default_image));
-			}
-			
-			String type = null;
-			if(!property.getJSONObject("property_type").isNull("virtual_property_type")){
-				type = property.getJSONObject("property_type").getString("virtual_property_type");
-				propertyType.setText(type);
-			}
-			else
 				propertyType.setText("");
-			
-			if(!property.getJSONObject("property_sub_type").isNull("name"))
-				subType.setText(property.getJSONObject("property_sub_type").getString("name"));
-			else
+			}
+
+			if (!property.isNull("property_sub_type")) {
+				if (!property.getJSONObject("property_sub_type").isNull("name"))
+					subType.setText(property.getJSONObject("property_sub_type")
+							.getString("name"));
+				else {
+					subType.setText("");
+				}
+			} else {
 				subType.setText("");
-			
-			if(!property.isNull("building_size"))
+			}
+
+			if (!property.isNull("building_size"))
 				propertySize.setText(property.getString("building_size"));
 			else
 				propertySize.setText("");
-			
+
 			System.out.println(type);
 			JSONObject propertyDetail = null;
-			if(!property.isNull("property_detail_industry")){
-				propertyDetail= property.getJSONObject("property_detail_industry");
+			if (!property.isNull("property_detail_industry")) {
+				propertyDetail = property
+						.getJSONObject("property_detail_industry");
+			} else if (!property.isNull("property_detail_land")) {
+				propertyDetail = property.getJSONObject("property_detail_land");
+			} else if (!property.isNull("property_detail_multifamily")) {
+				propertyDetail = property
+						.getJSONObject("property_detail_multifamily");
+			} else if (!property.isNull("property_detail_office")) {
+				propertyDetail = property
+						.getJSONObject("property_detail_office");
+			} else if (!property.isNull("property_detail_retail")) {
+				propertyDetail = property
+						.getJSONObject("property_detail_retail");
 			}
-			else if(!property.isNull("property_detail_land")){
-				propertyDetail= property.getJSONObject("property_detail_land");
-			}
-			else if(!property.isNull("property_detail_multifamily")){
-				propertyDetail= property.getJSONObject("property_detail_multifamily");
-			}
-			else if(!property.isNull("property_detail_office")){
-				propertyDetail= property.getJSONObject("property_detail_office");
-			}
-			else if(!property.isNull("property_detail_retail")){
-				propertyDetail= property.getJSONObject("property_detail_retail");
-			}
-			
-			
-			if(propertyDetail.has("building_class") && !propertyDetail.isNull("building_class"))
-				buildingClass.setText(propertyDetail.getJSONObject("building_class").getString("name"));
+
+			if (propertyDetail.has("building_class")
+					&& !propertyDetail.isNull("building_class"))
+				buildingClass.setText(propertyDetail.getJSONObject(
+						"building_class").getString("name"));
 			else
 				buildingClass.setText("");
-			
-			if(!property.isNull("number_of_units"))
-				noOfUnits.setText(Integer.toString(property.getInt("number_of_units")));
+
+			if (!property.isNull("number_of_units"))
+				noOfUnits.setText(Integer.toString(property
+						.getInt("number_of_units")));
 			else
 				noOfUnits.setText("");
-			
-			if(!property.isNull("zoning"))
+
+			if (!property.isNull("zoning"))
 				zoning.setText(property.getString("zoning"));
 			else
 				zoning.setText("");
-			
-			if(propertyDetail.has("parking") && !propertyDetail.isNull("parking"))
+
+			if (propertyDetail.has("parking")
+					&& !propertyDetail.isNull("parking"))
 				parking.setText(propertyDetail.getString("parking"));
 			else
 				parking.setText("");
-			
-			if(!property.isNull("lot_size"))
+
+			if (!property.isNull("lot_size"))
 				lotSize.setText(property.getString("lot_size"));
 			else
 				lotSize.setText("");
-			
-			if(propertyDetail.has("building_use") && !propertyDetail.isNull("building_use"))
-				buildingUse.setText(propertyDetail.getJSONObject("building_use").getString("name"));
+
+			if (propertyDetail.has("building_use")
+					&& !propertyDetail.isNull("building_use"))
+				buildingUse.setText(propertyDetail
+						.getJSONObject("building_use").getString("name"));
 			else
 				buildingUse.setText("");
-			
-			if(propertyDetail.has("construction") && !propertyDetail.isNull("construction"))
+
+			if (propertyDetail.has("construction")
+					&& !propertyDetail.isNull("construction"))
 				construction.setText(propertyDetail.getString("construction"));
 			else
 				construction.setText("");
-			
-			if(!property.isNull("parcel_number"))
+
+			if (!property.isNull("parcel_number"))
 				parcelNo.setText(property.getString("parcel_number"));
 			else
 				parcelNo.setText("");
-			
-			if(propertyDetail.has("parking_per_1000") && !propertyDetail.isNull("parking_per_1000"))
-				parking1000.setText(propertyDetail.getString("parking_per_1000"));
+
+			if (propertyDetail.has("parking_per_1000")
+					&& !propertyDetail.isNull("parking_per_1000"))
+				parking1000.setText(propertyDetail
+						.getString("parking_per_1000"));
 			else
 				parking1000.setText("");
-			
-			
 
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
+		
 		Button addNote = (Button) findViewById(R.id.add_note_button);
 		addNote.setOnClickListener(new OnClickListener() {
 
@@ -212,7 +229,7 @@ public class PropertyDetailsActivity extends Activity {
 				EditText text = (EditText) findViewById(R.id.note_text);
 				Log.v("note", text.getText().toString());
 				note.execute(uriAuthTokenAdded.toString(), text.getText()
-						.toString(), propertyId + "", username);
+						.toString(), propertyId + "", Data.userName);
 				text.setText("");
 			}
 		});
@@ -238,15 +255,14 @@ public class PropertyDetailsActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	private class FetchPicture extends AsyncTask<String, Integer, Bitmap>{
+
+	private class FetchPicture extends AsyncTask<String, Integer, Bitmap> {
 
 		@Override
 		protected void onPreExecute() {
 			propertyImage.setBackground(null);
 		}
-		
-		
+
 		@Override
 		protected Bitmap doInBackground(String... strs) {
 			StringBuilder uri = new StringBuilder(URI_INCOMPLETE);
@@ -254,12 +270,12 @@ public class PropertyDetailsActivity extends Activity {
 			Bitmap bmp = null;
 			Log.v("property_image", uri.toString());
 			HttpClient client = new DefaultHttpClient();
-			
+
 			HttpGet httpGet;
 
 			try {
 				httpGet = new HttpGet(uri.toString());
-				//httpGet.setHeader("Content-type", "application/json");
+				// httpGet.setHeader("Content-type", "application/json");
 
 				HttpResponse response = client.execute(httpGet);
 				StatusLine statusLine = response.getStatusLine();
@@ -269,7 +285,7 @@ public class PropertyDetailsActivity extends Activity {
 					InputStream imageStream = entity.getContent();
 					bmp = BitmapFactory.decodeStream(imageStream);
 				} else {
-					Log.v("logout",	"Failed to fetch image "+statusCode);
+					Log.v("logout", "Failed to fetch image " + statusCode);
 				}
 
 			} catch (UnsupportedEncodingException e) {
@@ -283,12 +299,12 @@ public class PropertyDetailsActivity extends Activity {
 			}
 			return bmp;
 		}
-		
+
 		@Override
 		protected void onPostExecute(Bitmap result) {
 			super.onPostExecute(result);
 			propertyImage.setImageBitmap(result);
 		}
-		
+
 	}
 }

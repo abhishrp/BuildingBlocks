@@ -94,6 +94,7 @@ public class FetchAllListings extends AsyncTask<String, Integer, String> {
 				} else {
 					Log.e(AllListingsActivity.class.toString(),
 							"Failed to fetch listings "+statusCode);
+					return statusCode+"";
 				}
 
 				jsonResponse = new JSONObject(builder.toString());
@@ -136,6 +137,11 @@ public class FetchAllListings extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
+		if(Integer.parseInt(result)!=200){
+			footerView.setVisibility(View.GONE);
+			Data.loadingMore = false;
+			return;
+		}
 		Data.loadingMore = true;
 
 		if (allListingsPagination.currentPage <= allListingsPagination.totalPages) {
