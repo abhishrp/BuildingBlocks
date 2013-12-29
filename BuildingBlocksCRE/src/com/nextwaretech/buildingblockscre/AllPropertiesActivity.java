@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -96,7 +95,6 @@ public class AllPropertiesActivity extends Activity implements
 
 		uriAuthTokenAdded = new StringBuilder(URI_NO_AUTH_TOKEN);
 		uriAuthTokenAdded.append(Data.authToken);
-		Log.v("properties", uriAuthTokenAdded.toString());
 
 		footerView = ((LayoutInflater) this
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
@@ -110,7 +108,6 @@ public class AllPropertiesActivity extends Activity implements
 				allPropertiesPagination, allPropertiesAdapter);
 		fetchProperties.execute(uriAuthTokenAdded.toString());
 
-		Log.v("damn", fetchProperties.getStatus().toString());
 		table.setOnScrollListener(this);
 		table.setOnItemClickListener(this);
 
@@ -160,8 +157,6 @@ public class AllPropertiesActivity extends Activity implements
 					&& !Data.loadingMore
 					&& searchedPropertiesPagination.currentPage < searchedPropertiesPagination.totalPages) {
 				searchedPropertiesPagination.currentPage++;
-				Log.v("propertyresp", "onscroll search page "
-						+ searchedPropertiesPagination.currentPage);
 				searchProperty = new SearchProperties(this, footerView,
 						searchedPropertiesPagination, searchedPropertiesAdapter);
 				searchProperty.execute(uriAuthTokenAdded.toString(), query);
@@ -171,8 +166,6 @@ public class AllPropertiesActivity extends Activity implements
 					&& !Data.loadingMore
 					&& allPropertiesPagination.currentPage < allPropertiesPagination.totalPages) {
 				allPropertiesPagination.currentPage++;
-				Log.v("propertyresp", "onscroll all page "
-						+ allPropertiesPagination.currentPage);
 				fetchProperties = new FetchAllProperties(this, footerView,
 						allPropertiesPagination, allPropertiesAdapter);
 				fetchProperties.execute(uriAuthTokenAdded.toString());
@@ -215,8 +208,6 @@ public class AllPropertiesActivity extends Activity implements
 		searchedPropertiesList.clear();
 		searchedPropertiesPagination.currentPage++;
 		table.setAdapter(searchedPropertiesAdapter);
-		Log.v("propertyresp", "onquerysubmit search page "
-				+ searchedPropertiesPagination.currentPage);
 		searchProperty = new SearchProperties(this, footerView,
 				searchedPropertiesPagination, searchedPropertiesAdapter);
 		searchProperty.execute(uriAuthTokenAdded.toString(), query);

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import android.content.Context;
-import android.util.Log;
 
 public class FileManager {
 
@@ -23,7 +22,6 @@ public class FileManager {
 		String[] files = context.fileList();
 		for (String file : files) {
 			if (file.equals(fileName)) {
-				//Toast.makeText(context, "NOT First Time", Toast.LENGTH_LONG).show();
 				return true;
 			}
 		}
@@ -36,7 +34,6 @@ public class FileManager {
 		// Create blank file if does not exist
 		try {
 			FileOutputStream fos;
-			//fos = context.openFileOutput(fileName, Context.MODE_APPEND);
 			fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
 			fos.write(data.getBytes());
 			fos.close();
@@ -55,7 +52,6 @@ public class FileManager {
 					inputStreamReader);
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
-				Log.v("file", line);
 				builder.append(line);
 			}
 			in.close();

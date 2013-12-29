@@ -23,8 +23,6 @@
         android:iconifiedByDefault="false" >
     </SearchView>
 
-    <!-- <include layout="@layout/list_row" /> -->
-
     <fragment
         android:id="@+id/table_header_fragment"
         android:layout_width="match_parent"

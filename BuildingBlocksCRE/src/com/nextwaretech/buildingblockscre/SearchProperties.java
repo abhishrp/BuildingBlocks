@@ -29,7 +29,6 @@ public class SearchProperties extends AsyncTask<String, Integer, String> {
 	private final String QUERY_PARAM = "&q[name_or_site_address_start]=";
 	private JSONObject jsonResponse;
 	private JSONArray properties;
-	private JSONObject aProperty;
 	private View footerView;
 	private Pagination searchedPropertiesPagination;
 	private Activity activity;
@@ -55,8 +54,6 @@ public class SearchProperties extends AsyncTask<String, Integer, String> {
 		if (searchedPropertiesPagination.currentPage == 1
 				|| searchedPropertiesPagination.currentPage <= searchedPropertiesPagination.totalPages) {
 			
-			
-			Log.v("propertiesresp", "search properties");
 			Data.loadingMore = true;
 			StringBuilder uriRaw = new StringBuilder(strs[0]);
 			uriRaw.append(QUERY_PARAM);
@@ -66,8 +63,6 @@ public class SearchProperties extends AsyncTask<String, Integer, String> {
 				uriRaw.append("&page="
 						+ searchedPropertiesPagination.currentPage);
 			}
-			
-				
 
 			String uri = uriRaw.toString();
 
@@ -110,24 +105,8 @@ public class SearchProperties extends AsyncTask<String, Integer, String> {
 						.getInt("total");
 				searchedPropertiesPagination.totalPages = pagination
 						.getInt("total_pages");
-				//searchedContactsPagination.current_page = pagination.getInt("current_page");
-
-				Log.v("propertieresp",
-						"pagination: " + " total="
-								+ pagination.getInt("total")
-								+ " total_pages="
-								+ pagination.getInt("total_pages")
-								+ " current_page="
-								+ pagination.getInt("current_page"));
 
 				properties = jsonResponse.getJSONArray("properties");
-				for (int i = 0; i < properties.length(); i++) {
-					aProperty = properties.getJSONObject(i).getJSONObject(
-							"property");
-					Log.v("propertieresp",
-							i + ") name="
-									+ aProperty.getString("site_address"));
-				}
 
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
@@ -155,7 +134,6 @@ public class SearchProperties extends AsyncTask<String, Integer, String> {
 							.getJSONObject("property");
 					searchedProeprtiesAdapter.add(propertyObj);
 				}
-				//Log.v("propertieresp", "list size "+ searchedContactsList.size() +" page " + searchedContactsPagination.current_page);
 
 			} catch (JSONException e) {
 				e.printStackTrace();

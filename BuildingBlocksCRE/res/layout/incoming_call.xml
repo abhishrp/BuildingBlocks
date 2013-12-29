@@ -36,17 +36,6 @@
             android:textColor="@color/header_footer_bg"
             android:textSize="@dimen/tab_name_text_size" />
 
-        <!--
-                 <ImageButton
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/app_icon"
-            android:layout_toLeftOf="@+id/app_icon"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:contentDescription="@string/desc"
-            android:src="@drawable/logout" />        -->
     </RelativeLayout>
 
     <TabHost
@@ -135,19 +124,6 @@
             android:paddingBottom="@dimen/padding_large"
             android:paddingTop="@dimen/padding_large"
             android:text="@string/tab4" />
-        <!--
-        <Button
-            android:id="@+id/create_note_tab"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft=""@dimen/padding_large"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingBottom="@dimen/padding_large"
-            android:layout_toRightOf="@id/incoming_call_tab"
-            android:drawableTop="@drawable/ic_launcher"
-            android:background="@null"
-            android:text="@string/create_note"/>
-        -->
     </RelativeLayout>
 
 </RelativeLayout>

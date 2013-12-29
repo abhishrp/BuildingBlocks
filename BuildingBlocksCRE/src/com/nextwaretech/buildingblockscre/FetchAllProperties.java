@@ -28,7 +28,6 @@ public class FetchAllProperties extends AsyncTask<String, Integer, String> {
 
 	private JSONObject jsonResponse;
 	private JSONArray properties;
-	private JSONObject aProperty;
 	private View footerView;
 	private Pagination allPropertiesPagination;
 	private Activity activity;
@@ -45,7 +44,6 @@ public class FetchAllProperties extends AsyncTask<String, Integer, String> {
 	protected void onPreExecute() {
 		Data.loadingMore = true;
 		footerView.setVisibility(View.VISIBLE);
-		Log.v("damn", "fetching properties");
 		super.onPreExecute();
 	}
 
@@ -54,7 +52,6 @@ public class FetchAllProperties extends AsyncTask<String, Integer, String> {
 
 		if (allPropertiesPagination.currentPage == 1
 				|| allPropertiesPagination.currentPage <= allPropertiesPagination.totalPages) {
-			Log.v("propertieresp", "all properties");
 			Data.loadingMore = true;
 			StringBuilder uriRaw = new StringBuilder(strs[0]);
 
@@ -103,22 +100,7 @@ public class FetchAllProperties extends AsyncTask<String, Integer, String> {
 				allPropertiesPagination.totalPages = pagination.getInt("total_pages");
 				allPropertiesPagination.currentPage = pagination.getInt("current_page");
 
-				Log.v("propertiesresp",
-						"pagination: " + " total="
-								+ pagination.getInt("total")
-								+ " total_pages="
-								+ pagination.getInt("total_pages")
-								+ " current_page="
-								+ pagination.getInt("current_page"));
-
 				properties = jsonResponse.getJSONArray("properties");
-				for (int i = 0; i < properties.length(); i++) {
-					aProperty = properties.getJSONObject(i).getJSONObject(
-							"property");
-					Log.v("propertiesresp",
-							i + ") name="
-									+ aProperty.getString("site_address"));
-				}
 
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();

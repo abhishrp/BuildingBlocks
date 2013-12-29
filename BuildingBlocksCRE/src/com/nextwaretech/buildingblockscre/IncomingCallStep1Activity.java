@@ -99,9 +99,6 @@ public class IncomingCallStep1Activity extends Activity {
 		firstNameEt = (EditText)findViewById(R.id.in_call_first_name);
 		noteTextEt = (EditText)findViewById(R.id.note_text);
 		
-		//JSONObject request = new JSONObject();
-		//final JSONObject incoming_call = new JSONObject();
-		
 		Button step1ContinueButton = (Button) findViewById(R.id.add_note_button);
 		step1ContinueButton.setBackground(getResources().getDrawable(R.drawable.button_continue));
 		step1ContinueButton.setOnClickListener(new OnClickListener() {
@@ -114,7 +111,6 @@ public class IncomingCallStep1Activity extends Activity {
 				JSONObject incomingCall = IncomingCallActivity.incoming_call_data;
 				if(firstName!=null && firstName.length()!=0 && noteText!=null & noteText.length()!=0) {
 					try {
-						Log.v("in call", "creating request");
 						incomingCall.put("date", ((EditText)findViewById(R.id.in_call_date)).getText().toString());
 						incomingCall.put("first_name", ((EditText)findViewById(R.id.in_call_first_name)).getText().toString());
 						incomingCall.put("last_name", ((EditText)findViewById(R.id.in_call_last_name)).getText().toString());
@@ -202,7 +198,6 @@ public class IncomingCallStep1Activity extends Activity {
 
 				jsonResponse = new JSONObject(builder.toString());
 				states = jsonResponse.getJSONArray("states");
-				Log.v("states", states.toString());
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
@@ -285,7 +280,6 @@ public class IncomingCallStep1Activity extends Activity {
 				for(int i=0; i<callerTypes.length(); i++) {
 					callerTypeCodes.put(callerTypes.getJSONArray(i).getString(0), callerTypes.getJSONArray(i).getInt(1));
 				}
-				Log.v("states", callerTypes.toString());
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
@@ -302,20 +296,11 @@ public class IncomingCallStep1Activity extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			//try {
 				Object[] objArray = callerTypeCodes.keySet().toArray();
 				String[] spinnerArray = Arrays.copyOf(objArray, objArray.length, String[].class);
-				/*List<String> spinnerArray = new ArrayList<String>();
-				for(int i=0; i<callerTypes.length(); i++) {
-					spinnerArray.add(callerTypes.getJSONArray(i).getString(0));
-				}*/
 				Spinner stateSpinner = (Spinner) findViewById(R.id.in_call_caller_type);
 				ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, spinnerArray);
 				stateSpinner.setAdapter(spinnerArrayAdapter);
-			/*} catch (JSONException e) {
-				e.printStackTrace();
-			}*/
-			
 		}
 		
 	}
@@ -371,7 +356,6 @@ public class IncomingCallStep1Activity extends Activity {
 				for(int i=0; i<listingSources.length(); i++) {
 					listingSourceCodes.put(listingSources.getJSONArray(i).getString(0), listingSources.getJSONArray(i).getInt(1));
 				}
-				Log.v("states", listingSources.toString());
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
@@ -388,19 +372,11 @@ public class IncomingCallStep1Activity extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			//try {
 				Object[] objArray = listingSourceCodes.keySet().toArray();
 				String[] spinnerArray = Arrays.copyOf(objArray, objArray.length, String[].class);
-				/*List<String> spinnerArray = new ArrayList<String>();
-				for(int i=0; i<callerTypes.length(); i++) {
-					spinnerArray.add(callerTypes.getJSONArray(i).getString(0));
-				}*/
 				Spinner stateSpinner = (Spinner) findViewById(R.id.in_call_found_listing_by);
 				ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, spinnerArray);
 				stateSpinner.setAdapter(spinnerArrayAdapter);
-			/*} catch (JSONException e) {
-				e.printStackTrace();
-			}*/
 		}
 		
 	}
@@ -416,7 +392,6 @@ public class IncomingCallStep1Activity extends Activity {
 		@Override
 		protected String doInBackground(String... strs) {
 			String uri = strs[0];
-			//JSONObject request = new JSONObject(strs[1]);
 			JSONObject incomingCall = new JSONObject();
 			StringBuilder builder = new StringBuilder();
 			HttpClient client = new DefaultHttpClient();
@@ -452,9 +427,6 @@ public class IncomingCallStep1Activity extends Activity {
 
 				jsonResponse = new JSONObject(builder.toString());
 				incomingCall = jsonResponse.getJSONObject("incoming_call");
-				Log.v("in call1", incomingCall.toString());
-				if(incomingCall.has("id"))
-					Log.v("in call", "id "+incomingCall.getString("id"));
 				
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();

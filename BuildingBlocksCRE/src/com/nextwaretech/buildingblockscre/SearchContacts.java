@@ -29,7 +29,6 @@ public class SearchContacts extends AsyncTask<String, Integer, String> {
 	private final String QUERY_PARAM = "&q[first_name_or_last_name_or_company_name_start]=";
 	private JSONObject jsonResponse;
 	private JSONArray contacts;
-	private JSONObject aContact;
 	private View footerView;
 	private Pagination searchedContactsPagination;
 	private Activity activity;
@@ -56,7 +55,6 @@ public class SearchContacts extends AsyncTask<String, Integer, String> {
 				|| searchedContactsPagination.currentPage <= searchedContactsPagination.totalPages) {
 			
 			
-			Log.v("contactresp", "search contacts");
 			Data.loadingMore = true;
 			StringBuilder uriRaw = new StringBuilder(strs[0]);
 			uriRaw.append(QUERY_PARAM);
@@ -110,24 +108,8 @@ public class SearchContacts extends AsyncTask<String, Integer, String> {
 						.getInt("total");
 				searchedContactsPagination.totalPages = pagination
 						.getInt("total_pages");
-				//searchedContactsPagination.current_page = pagination.getInt("current_page");
-
-				Log.v("contactresp",
-						"pagination: " + " total="
-								+ pagination.getInt("total")
-								+ " total_pages="
-								+ pagination.getInt("total_pages")
-								+ " current_page="
-								+ pagination.getInt("current_page"));
 
 				contacts = jsonResponse.getJSONArray("contact");
-				for (int i = 0; i < contacts.length(); i++) {
-					aContact = contacts.getJSONObject(i).getJSONObject(
-							"contact");
-					Log.v("contactresp",
-							i + ") name="
-									+ aContact.getString("first_name"));
-				}
 
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
@@ -154,10 +136,8 @@ public class SearchContacts extends AsyncTask<String, Integer, String> {
 					JSONObject contactObj = contacts.getJSONObject(i)
 							.getJSONObject("contact");
 
-					//searchedContactsList.addLast(contactObj);
 					searchedContactsAdapter.add(contactObj);
 				}
-				//Log.v("contactresp", "list size "+ searchedContactsList.size() +" page " + searchedContactsPagination.current_page);
 
 			} catch (JSONException e) {
 				e.printStackTrace();

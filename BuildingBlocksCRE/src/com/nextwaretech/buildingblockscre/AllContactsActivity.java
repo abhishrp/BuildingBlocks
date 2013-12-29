@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,7 +93,6 @@ public class AllContactsActivity extends Activity implements OnScrollListener,
 
 		uriAuthTokenAdded = new StringBuilder(URI_NO_AUTH_TOKEN);
 		uriAuthTokenAdded.append(Data.authToken);
-		Log.v("contacts", uriAuthTokenAdded.toString());
 
 		footerView = ((LayoutInflater) this
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
@@ -108,7 +106,6 @@ public class AllContactsActivity extends Activity implements OnScrollListener,
 				allContactsPagination, allContactsAdapter);
 		fetchContacts.execute(uriAuthTokenAdded.toString());
 
-		Log.v("damn", fetchContacts.getStatus().toString());
 		table.setOnScrollListener(this);
 		table.setOnItemClickListener(this);
 
@@ -158,8 +155,6 @@ public class AllContactsActivity extends Activity implements OnScrollListener,
 					&& !Data.loadingMore
 					&& searchedContactsPagination.currentPage < searchedContactsPagination.totalPages) {
 				searchedContactsPagination.currentPage++;
-				Log.v("contactresp", "onscroll search page "
-						+ searchedContactsPagination.currentPage);
 				searchContact = new SearchContacts(this, footerView,
 						searchedContactsPagination, searchedContactsAdapter);
 				searchContact.execute(uriAuthTokenAdded.toString(), query);
@@ -169,8 +164,6 @@ public class AllContactsActivity extends Activity implements OnScrollListener,
 					&& !Data.loadingMore
 					&& allContactsPagination.currentPage < allContactsPagination.totalPages) {
 				allContactsPagination.currentPage++;
-				Log.v("contactresp", "onscroll all page "
-						+ allContactsPagination.currentPage);
 				fetchContacts = new FetchAllContacts(this, footerView,
 						allContactsPagination, allContactsAdapter);
 				fetchContacts.execute(uriAuthTokenAdded.toString());
@@ -213,8 +206,6 @@ public class AllContactsActivity extends Activity implements OnScrollListener,
 		searchedContactsList.clear();
 		searchedContactsPagination.currentPage++;
 		table.setAdapter(searchedContactsAdapter);
-		Log.v("contactresp", "onquerysubmit search page "
-				+ searchedContactsPagination.currentPage);
 		searchContact = new SearchContacts(this, footerView,
 				searchedContactsPagination, searchedContactsAdapter);
 		searchContact.execute(uriAuthTokenAdded.toString(), query);

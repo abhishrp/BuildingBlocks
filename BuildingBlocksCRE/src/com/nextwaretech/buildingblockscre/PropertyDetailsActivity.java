@@ -78,7 +78,6 @@ public class PropertyDetailsActivity extends Activity {
 		
 		try {
 			JSONObject property = new JSONObject(str);
-			Log.v("propertyDetails", property.getString("site_address"));
 			propertyId = property.getInt("id");
 			uriAuthTokenAdded.append("/");
 			uriAuthTokenAdded.append(propertyId);
@@ -106,7 +105,6 @@ public class PropertyDetailsActivity extends Activity {
 
 			if (!property.isNull("default_picture")
 					&& property.getString("default_picture").length() != 0) {
-				Log.v("property_image", "fetching");
 				FetchPicture fpic = new FetchPicture();
 				fpic.execute(property.getString("default_picture"));
 			} else {
@@ -114,13 +112,11 @@ public class PropertyDetailsActivity extends Activity {
 						R.drawable.default_image));
 			}
 
-			String type = null;
 			if (!property.isNull("property_type")) {
 				if (!property.getJSONObject("property_type").isNull(
 						"virtual_property_type")) {
-					type = property.getJSONObject("property_type").getString(
-							"virtual_property_type");
-					propertyType.setText(type);
+					propertyType.setText(property.getJSONObject("property_type").getString(
+							"virtual_property_type"));
 				} else
 					propertyType.setText("");
 			}
@@ -144,7 +140,6 @@ public class PropertyDetailsActivity extends Activity {
 			else
 				propertySize.setText("");
 
-			System.out.println(type);
 			JSONObject propertyDetail = null;
 			if (!property.isNull("property_detail_industry")) {
 				propertyDetail = property
@@ -227,7 +222,6 @@ public class PropertyDetailsActivity extends Activity {
 			public void onClick(View v) {
 				AddNote note = new AddNote(PropertyDetailsActivity.this);
 				EditText text = (EditText) findViewById(R.id.note_text);
-				Log.v("note", text.getText().toString());
 				note.execute(uriAuthTokenAdded.toString(), text.getText()
 						.toString(), propertyId + "", Data.userName);
 				text.setText("");
@@ -268,15 +262,11 @@ public class PropertyDetailsActivity extends Activity {
 			StringBuilder uri = new StringBuilder(URI_INCOMPLETE);
 			uri.append(strs[0]);
 			Bitmap bmp = null;
-			Log.v("property_image", uri.toString());
 			HttpClient client = new DefaultHttpClient();
-
 			HttpGet httpGet;
 
 			try {
 				httpGet = new HttpGet(uri.toString());
-				// httpGet.setHeader("Content-type", "application/json");
-
 				HttpResponse response = client.execute(httpGet);
 				StatusLine statusLine = response.getStatusLine();
 				int statusCode = statusLine.getStatusCode();
@@ -285,7 +275,7 @@ public class PropertyDetailsActivity extends Activity {
 					InputStream imageStream = entity.getContent();
 					bmp = BitmapFactory.decodeStream(imageStream);
 				} else {
-					Log.v("logout", "Failed to fetch image " + statusCode);
+					Log.e("logout", "Failed to fetch image " + statusCode);
 				}
 
 			} catch (UnsupportedEncodingException e) {

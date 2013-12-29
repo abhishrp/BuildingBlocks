@@ -28,7 +28,6 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 
 	private JSONObject jsonResponse;
 	private JSONArray contacts;
-	private JSONObject aContact;
 	private View footerView;
 	private Pagination allContactsPagination;
 	private Activity activity;
@@ -53,7 +52,6 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 
 		if (allContactsPagination.currentPage == 1
 				|| allContactsPagination.currentPage <= allContactsPagination.totalPages) {
-			Log.v("contactresp", "all contacts");
 			Data.loadingMore = true;
 			StringBuilder uriRaw = new StringBuilder(strs[0]);
 
@@ -101,23 +99,7 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 				allContactsPagination.total = pagination.getInt("total");
 				allContactsPagination.totalPages = pagination.getInt("total_pages");
 				allContactsPagination.currentPage = pagination.getInt("current_page");
-
-				Log.v("contactresp",
-						"pagination: " + " total="
-								+ pagination.getInt("total")
-								+ " total_pages="
-								+ pagination.getInt("total_pages")
-								+ " current_page="
-								+ pagination.getInt("current_page"));
-
 				contacts = jsonResponse.getJSONArray("contact");
-				for (int i = 0; i < contacts.length(); i++) {
-					aContact = contacts.getJSONObject(i).getJSONObject(
-							"contact");
-					Log.v("contactresp",
-							i + ") name="
-									+ aContact.getString("first_name"));
-				}
 
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
@@ -149,7 +131,6 @@ public class FetchAllContacts extends AsyncTask<String, Integer, String> {
 				for (int i = 0; i < contacts.length(); i++) {
 					JSONObject contactObj = contacts.getJSONObject(i)
 							.getJSONObject("contact");
-					//contactsList.addLast(contactObj);
 					allContactsAdapter.add(contactObj);
 					
 				}

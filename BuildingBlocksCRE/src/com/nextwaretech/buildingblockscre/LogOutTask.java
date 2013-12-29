@@ -27,7 +27,6 @@ import android.widget.Toast;
 public class LogOutTask extends AsyncTask<String, Integer, String> {
 
 	private final String URI_NO_AUTH_TOKEN = Data.SERVER_NAME+"users/sign_out.json?auth_token=";
-	private JSONObject jsonResponse;
 	private Context context;
 	private ProgressDialog progressDiag;
 	private boolean success;
@@ -74,20 +73,14 @@ public class LogOutTask extends AsyncTask<String, Integer, String> {
 					builder.append(line);
 				}
 			} else {
-				Log.v("logout",	"Failed to logout "+statusCode);
+				Log.e("logout",	"Failed to logout "+statusCode);
 			}
-
-			jsonResponse = new JSONObject(builder.toString());
-
-			Log.v("logout",jsonResponse.getJSONArray("message").get(0).toString());
 
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,7 +91,6 @@ public class LogOutTask extends AsyncTask<String, Integer, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		if(success) {
-			//Intent intent = new Intent("com.nextwaretech.buildingblockscre.SignInActivity");
 			Intent intent = new Intent(context,SignInActivity.class);
 	        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			Data.authToken = null;

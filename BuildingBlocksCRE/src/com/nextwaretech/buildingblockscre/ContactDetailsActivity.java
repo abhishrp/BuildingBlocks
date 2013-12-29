@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,7 +55,6 @@ public class ContactDetailsActivity extends Activity {
 		JSONObject contactPersonalInfo;
 		try {
 			JSONObject contact = new JSONObject(str);
-			Log.v("contactDetails", contact.getString("name"));
 			contactId = contact.getInt("id");
 			uriAuthTokenAdded.append(contactId);
 			uriAuthTokenAdded.append("/add_note.json?auth_token=");
@@ -85,8 +83,6 @@ public class ContactDetailsActivity extends Activity {
 				addr.append(contactPersonalInfo.getString("address_1"));
 				addr.append(" ");
 			}
-			// if(contact_personal_info.getString("address_1")!=null &&
-			// contact_personal_info.getString("address_1").length()!=0)
 
 			if (!contactPersonalInfo.isNull("address_2")) {
 				addr.append(contactPersonalInfo.getString("address_2"));
@@ -148,7 +144,6 @@ public class ContactDetailsActivity extends Activity {
 			public void onClick(View v) {
 				AddNote note = new AddNote(ContactDetailsActivity.this);
 				EditText text = (EditText) findViewById(R.id.note_text);
-				Log.v("note", text.getText().toString());
 				note.execute(uriAuthTokenAdded.toString(), text.getText()
 						.toString(), contactId + "", Data.userName);
 				text.setText("");

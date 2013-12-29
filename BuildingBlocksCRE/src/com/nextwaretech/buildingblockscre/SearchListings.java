@@ -29,7 +29,6 @@ public class SearchListings extends AsyncTask<String, Integer, String> {
 	private final String QUERY_PARAM = "&q[name_or_site_address_start]=";
 	private JSONObject jsonResponse;
 	private JSONArray listings;
-	private JSONObject aListing;
 	private View footerView;
 	private Pagination searchedListingsPagination;
 	private Activity activity;
@@ -56,7 +55,6 @@ public class SearchListings extends AsyncTask<String, Integer, String> {
 				|| searchedListingsPagination.currentPage <= searchedListingsPagination.totalPages) {
 			
 			
-			Log.v("listingsresp", "search listings");
 			Data.loadingMore = true;
 			StringBuilder uriRaw = new StringBuilder(strs[0]);
 			uriRaw.append(QUERY_PARAM);
@@ -83,7 +81,6 @@ public class SearchListings extends AsyncTask<String, Integer, String> {
 
 				httpGet.setHeader("REMOTE", "True");
 				httpGet.setHeader("Content-type", "application/json");
-
 				HttpResponse response = client.execute(httpGet);
 				StatusLine statusLine = response.getStatusLine();
 				int statusCode = statusLine.getStatusCode();
@@ -110,24 +107,8 @@ public class SearchListings extends AsyncTask<String, Integer, String> {
 						.getInt("total");
 				searchedListingsPagination.totalPages = pagination
 						.getInt("total_pages");
-				//searchedContactsPagination.current_page = pagination.getInt("current_page");
-
-				Log.v("listingresp",
-						"pagination: " + " total="
-								+ pagination.getInt("total")
-								+ " total_pages="
-								+ pagination.getInt("total_pages")
-								+ " current_page="
-								+ pagination.getInt("current_page"));
 
 				listings = jsonResponse.getJSONArray("listings");
-				for (int i = 0; i < listings.length(); i++) {
-					aListing = listings.getJSONObject(i).getJSONObject(
-							"listing");
-					Log.v("listingresp",
-							i + ") name="
-									+ aListing.getString("site_address"));
-				}
 
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
@@ -155,7 +136,6 @@ public class SearchListings extends AsyncTask<String, Integer, String> {
 							.getJSONObject("listing");
 					searchedListingsAdapter.add(listingObj);
 				}
-				//Log.v("listingresp", "list size "+ searchedContactsList.size() +" page " + searchedContactsPagination.current_page);
 
 			} catch (JSONException e) {
 				e.printStackTrace();

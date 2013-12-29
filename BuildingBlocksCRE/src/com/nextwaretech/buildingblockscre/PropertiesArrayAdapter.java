@@ -50,13 +50,7 @@ public class PropertiesArrayAdapter extends ArrayAdapter<JSONObject> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.list_row, parent, false);
 		if (!checkmark) {
-			// int check_mark_width =
-			// activity.findViewById(R.id.select).getWidth();
 			ImageView check = (ImageView) rowView.findViewById(R.id.check_mark);
-			/*
-			 * params = (LayoutParams) check.getLayoutParams(); params.width =
-			 * check_mark_width; check.setLayoutParams(params);
-			 */
 			check.setVisibility(View.GONE);
 		}
 		TextView address = (TextView) rowView.findViewById(R.id.col1);

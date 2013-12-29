@@ -38,7 +38,6 @@ public class AddNote extends AsyncTask<String, Integer, String> {
 	protected String doInBackground(String... strs) {
 
 		String result = "";
-		Log.v("contactresp", "adding note");
 		String uri = strs[0];
 
 		StringBuilder builder = new StringBuilder();
@@ -86,8 +85,6 @@ public class AddNote extends AsyncTask<String, Integer, String> {
 
 			jsonResponse = new JSONObject(builder.toString());
 			message = jsonResponse.getJSONArray("message");
-
-			Log.v("contactnote", message.get(0).toString());
 
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

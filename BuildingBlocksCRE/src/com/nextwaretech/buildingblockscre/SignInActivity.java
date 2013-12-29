@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.nextwaretech.buildingblockscre.R;
 
@@ -35,6 +37,7 @@ public class SignInActivity extends Activity implements OnClickListener {
 
 	private final String URI = Data.SERVER_NAME+"users/sign_in.json";
 	private final String FILE_NAME = "credentials.txt";
+	private final String activityToStart = "com.nextwaretech.buildingblockscre.AllContactsActivity";
 	EditText email;
 	EditText password;
 	CheckBox keepLoggedIn;
@@ -95,7 +98,6 @@ public class SignInActivity extends Activity implements OnClickListener {
 				credentials.append("\"" + password.getText().toString() + "\"");
 			}
 			credentials.append("\n\t}\n}");
-			Log.v("damn", credentials.toString());
 
 			try {
 				fileman.writeToFile(credentials.toString(), FILE_NAME);
@@ -103,7 +105,7 @@ public class SignInActivity extends Activity implements OnClickListener {
 				e.printStackTrace();
 			}
 		}
-		SignInNetworkTask signInTask = new SignInNetworkTask();
+		SignInNetworkTask signInTask = new SignInNetworkTask(this);
 		signInTask.execute(URI, email.getText().toString(), password.getText().toString());
 	}
 
@@ -125,10 +127,6 @@ public class SignInActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				DIALOG.dismiss();
 				SignInActivity.this.finish();
-				/*Intent intent = new Intent(Intent.ACTION_MAIN);
-				intent.addCategory(Intent.CATEGORY_HOME);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(intent);*/
 			}
 		});
 
@@ -144,7 +142,9 @@ public class SignInActivity extends Activity implements OnClickListener {
 
 	private class SignInNetworkTask extends AsyncTask<String, Integer, String> {
 
-		public SignInNetworkTask() {
+		private Context context;
+		public SignInNetworkTask(Context cxt) {
+			context = cxt;
 		}
 
 		@Override
@@ -194,23 +194,13 @@ public class SignInActivity extends Activity implements OnClickListener {
 				jsonResponse = new JSONObject(builder.toString());
 				session = jsonResponse.getJSONObject("session");
 
-				Log.v("signinresp",
-						session.getString("error") + " "
-								+ session.getString("auth_token") + " "
-								+ session.getString("username"));
-
 				if (session.getString("error").equals("Success")) {
-					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllContactsActivity");
-					Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllListingsActivity");
-					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.IncomingCallActivity");
-					//Intent intent = new Intent("com.nextwaretech.buildingblockscre.AllPropertiesActivity");
-					// intent.putExtra("auth_token",
-					// session.getString("auth_token"));
+					Intent intent = new Intent(activityToStart);
 					Data.authToken = session.getString("auth_token");
 					Data.userName = session.getString("username");
 					startActivity(intent);
 				} else {
-					Log.v("signinresp", "Sign in unsuccessful");
+					Toast.makeText(context, "Sign in unsuccessful", Toast.LENGTH_SHORT).show();
 				}
 
 			} catch (UnsupportedEncodingException e) {

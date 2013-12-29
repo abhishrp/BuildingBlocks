@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -95,7 +94,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 
 		uriAuthTokenAdded = new StringBuilder(URI_NO_AUTH_TOKEN);
 		uriAuthTokenAdded.append(Data.authToken);
-		Log.v("listings", uriAuthTokenAdded.toString());
 
 		footerView = ((LayoutInflater) this
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
@@ -109,7 +107,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 				footerView, allListingsPagination, allListingsAdapter);
 		fetchListings.execute(uriAuthTokenAdded.toString());
 
-		Log.v("damn", fetchListings.getStatus().toString());
 		table.setOnScrollListener(this);
 		table.setOnItemClickListener(this);
 
@@ -158,8 +155,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 					&& !Data.loadingMore
 					&& searchedListingsPagination.currentPage < searchedListingsPagination.totalPages) {
 				searchedListingsPagination.currentPage++;
-				Log.v("listingresp", "onscroll search page "
-						+ searchedListingsPagination.currentPage);
 				searchListing = new SearchListings(this, footerView,
 						searchedListingsPagination, searchedListingsAdapter);
 				searchListing.execute(uriAuthTokenAdded.toString(), query);
@@ -169,8 +164,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 					&& !Data.loadingMore
 					&& allListingsPagination.currentPage < allListingsPagination.totalPages) {
 				allListingsPagination.currentPage++;
-				Log.v("listingresp", "onscroll all page "
-						+ allListingsPagination.currentPage);
 				fetchListings = new FetchAllListings(this, footerView,
 						allListingsPagination, allListingsAdapter);
 				fetchListings.execute(uriAuthTokenAdded.toString());
@@ -213,7 +206,6 @@ public class AllListingsActivity extends Activity implements OnScrollListener,
 		searchedListingsList.clear();
 		searchedListingsPagination.currentPage++;
 		table.setAdapter(searchedListingsAdapter);
-		Log.v("listingresp", "onquerysubmit search page "+ searchedListingsPagination.currentPage);
 		searchListing = new SearchListings(this, footerView, searchedListingsPagination, searchedListingsAdapter);
 		searchListing.execute(uriAuthTokenAdded.toString(), query);
 		return true;

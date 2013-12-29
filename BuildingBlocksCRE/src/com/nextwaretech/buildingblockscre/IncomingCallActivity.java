@@ -30,6 +30,8 @@ public class IncomingCallActivity extends TabActivity {
 	private View tabIndicator;
 	private TextView stepNo;
 	private TextView tabName;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,8 +43,6 @@ public class IncomingCallActivity extends TabActivity {
 		uriAuthTokenAdded.append(Data.authToken);
 		
 		tabHost = (TabHost) findViewById(android.R.id.tabhost);
-		//tabHost = getTabHost();
-		//tabHost.setup();
 		tabWidget = (TabWidget) findViewById(android.R.id.tabs);
 		setupTabs();
 		tabWidget.getChildTabViewAt(1).setEnabled(false);
@@ -72,7 +72,6 @@ public class IncomingCallActivity extends TabActivity {
 	    stepNo = (TextView) tabIndicator.findViewById(R.id.step_no);
 	    stepNo.setText(specname);
 		tabName = (TextView) tabIndicator.findViewById(R.id.tab_name);
-	    //stepNo.setWidth(tab_name.getWidth());
 	    tabName.setText(tabname);
 	    specs.setIndicator(tabIndicator);
 	    Intent intent = new Intent(this, c);
